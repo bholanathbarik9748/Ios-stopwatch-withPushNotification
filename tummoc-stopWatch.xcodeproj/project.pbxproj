@@ -12,6 +12,7 @@
 		E54D1D4D2C8B1E200075618E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E54D1D4C2C8B1E200075618E /* Assets.xcassets */; };
 		E54D1D502C8B1E200075618E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E54D1D4F2C8B1E200075618E /* Preview Assets.xcassets */; };
 		E54D1D592C8B40F20075618E /* StopWatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54D1D582C8B40F20075618E /* StopWatchModel.swift */; };
+		E54D1D5D2C8C52420075618E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54D1D5C2C8C52420075618E /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E54D1D4F2C8B1E200075618E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E54D1D582C8B40F20075618E /* StopWatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchModel.swift; sourceTree = "<group>"; };
 		E54D1D5A2C8B5C200075618E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E54D1D5C2C8C52420075618E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		E54D1D472C8B1E1F0075618E /* tummoc-stopWatch */ = {
 			isa = PBXGroup;
 			children = (
+				E54D1D5B2C8C522B0075618E /* NotificationManager */,
 				E54D1D5A2C8B5C200075618E /* Info.plist */,
 				E54D1D572C8B1E6A0075618E /* Model */,
 				E54D1D562C8B1E5D0075618E /* Views */,
@@ -86,6 +89,14 @@
 				E54D1D582C8B40F20075618E /* StopWatchModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E54D1D5B2C8C522B0075618E /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				E54D1D5C2C8C52420075618E /* NotificationManager.swift */,
+			);
+			path = NotificationManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +171,7 @@
 			files = (
 				E54D1D4B2C8B1E1F0075618E /* StopWatch.swift in Sources */,
 				E54D1D492C8B1E1F0075618E /* tummoc_stopWatchApp.swift in Sources */,
+				E54D1D5D2C8C52420075618E /* NotificationManager.swift in Sources */,
 				E54D1D592C8B40F20075618E /* StopWatchModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

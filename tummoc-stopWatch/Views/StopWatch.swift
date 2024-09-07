@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StopWatch: View {
     @StateObject var stopWatchModel = StopWatchModel()
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var backgroundEntryTime: Date?
     
     var body: some View {
         VStack(spacing: 30) {
@@ -72,6 +74,20 @@ struct StopWatch: View {
             LinearGradient(gradient: Gradient(colors: [Color.white, Color.gray.opacity(0.1)]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
         )
+        .onChange(of: scenePhase) { newPhase in
+            switch newPhase {
+            case .background:
+                backgroundEntryTime = Date()
+                NotificationManager.shared.triggerStopwatchNotification(timeElapsed: formatTime(stopWatchModel.timeElapsed, precision: stopWatchModel.currPrecision))
+                startBackgroundTimer()
+            case .active:
+                backgroundEntryTime = nil
+                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                stopBackgroundTimer()
+            default:
+                break
+            }
+        }
     }
     
     private func formatTime(_ time: TimeInterval, precision: Precision) -> String {
@@ -85,6 +101,28 @@ struct StopWatch: View {
             return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         case .millisecond:
             return String(format: "%02d:%02d:%02d:%03d", hours, minutes, seconds, milliseconds)
+        }
+    }
+    
+    // Background timer to track background time
+    @State private var backgroundTimer: Timer?
+    
+    private func startBackgroundTimer() {
+        backgroundTimer = Timer.scheduledTimer(withTimeInterval: 600, repeats: false) { _ in
+            NotificationManager.shared.triggerAlertNotification()
+            startResetTimer()
+        }
+    }
+    
+    private func stopBackgroundTimer() {
+        backgroundTimer?.invalidate()
+        backgroundTimer = nil
+    }
+    
+    // Timer to reset stopwatch after 15 minutes in the background
+    private func startResetTimer() {
+        Timer.scheduledTimer(withTimeInterval: 300, repeats: false) { _ in
+            stopWatchModel.actionRestart()
         }
     }
 }
